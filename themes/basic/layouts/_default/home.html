@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ .Content }}
+  {{ range ( where .Site.Pages "Type" "products-section" ) }}
+    {{ $section := .Section }}
+    {{ with $.Site.GetPage "Section" $section }}
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ end }}
+    <section class="category-preview">
+        {{ range (where $.Site.RegularPages "Type" $section).ByParam "sku" }}
+            <!-- <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3> -->
+            {{ partial "product-preview" . }}
+        {{ end }}
+    </section>
+  {{ end }}
+{{ end }}

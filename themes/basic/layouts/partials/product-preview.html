@@ -1,0 +1,15 @@
+{{ $image := resources.Get .Params.image }}
+{{ $alt := .Params.imageText }}
+<div class="product-preview">
+    {{ with  $image }}
+        {{ $imageSmall := .Resize "450x" }}
+        {{ with $imageSmall }}
+        <a href="{{ $.Page.RelPermalink }}" title="{{ $alt }}">
+            <figure>
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}">
+                <figcaption>{{ $alt }}</figcaption>
+            </figure>
+        </a>
+        {{ end }}
+    {{ end }}
+</div>

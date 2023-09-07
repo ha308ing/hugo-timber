@@ -1,0 +1,28 @@
+baseURL = 'https://example.org/'
+languageCode = 'ru-ru'
+title = 'My New Hugo Site'
+
+[[menus.main]]
+name = 'Гребни и расчёски'
+pageRef = '/combs'
+weight = 10
+
+[[menus.main]]
+name = 'Массажёры'
+pageRef = '/massagers'
+weight = 20
+
+[[menus.main]]
+name = 'Тёрки для стоп'
+pageRef = '/feet'
+weight = 30
+
+[[menus.main]]
+name = 'Для кухни'
+pageRef = '/kitchen'
+weight = 40
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.116.0"
