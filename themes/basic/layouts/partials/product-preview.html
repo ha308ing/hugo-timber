@@ -5,7 +5,7 @@
         {{ $imageSmall := .Resize "450x" }}
         {{ with $imageSmall }}
         <a href="{{ $.Page.RelPermalink }}" title="{{ $alt }}">
-            <figure>
+            <figure class="product-preview-figure">
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}">
                 <figcaption>{{ $alt }}</figcaption>
             </figure>

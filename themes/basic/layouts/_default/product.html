@@ -1,0 +1,30 @@
+{{ define "main" }}
+    <section class="product-main">
+        <h1>{{ .Title }}</h1>
+        <div class="product-info">
+        {{ $image := resources.Get .Params.image }}
+        {{ $alt := .Params.imageText }}
+        {{ with  $image }}
+            <figure class="product-image">
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}">
+            </figure>
+        {{ end }}
+        <div class="product-description">
+            {{ .Content }}
+        </div>
+        </div>
+    </section>
+    <aside class="product-aside">
+        <h2>Ещё {{ ( .Site.GetPage "Section" .Section ).Title | lower }}...</h2>
+        <ul class="product-aside-list">
+        {{ range where (where .Site.RegularPages "Type" .Type) "Title" "!=" .Title }}
+            {{ $product := . }}
+            {{ $image := resources.Get $product.Params.image }}
+            {{ $image := $image.Resize "200x" }}
+            {{ with $image }}
+                <li><a href="{{ $product.RelPermalink }}"><figure class="product-preview-figure"><img src="{{ .RelPermalink }}" alt="{{ $product.Params.imageText }}"><figcaption>{{ $product.Title }}</figcaption></figure></a></li>
+            {{ end }}
+        {{ end }}
+        </ul>
+    </aside>
+{{ end }}
